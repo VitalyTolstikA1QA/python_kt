@@ -4,6 +4,7 @@ from test_project.models.artist import Artist
 from framework.data_processors.json.json_util import get_value
 
 
+@pytest.mark.api
 @pytest.mark.parametrize(
     'artist_id, genre',
     [
@@ -18,6 +19,7 @@ def test_genre_is_present(artist_id, genre):
     assert genre.lower() in genres, f'{genre} was not found in {genres}'
 
 
+@pytest.mark.api
 @pytest.mark.parametrize(
     'artist_id, song_name',
     [
