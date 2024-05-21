@@ -1,15 +1,13 @@
-from selenium.webdriver.remote.webelement import WebElement
+from playwright.sync_api import Page
+from framework.utils.config_utils import config
 
 
 class BasePage:
-    def __init__(self, browser):
-        self.browser = browser
+    def __init__(self, page: Page):
+        self.page = page
+        self.width = 1820
+        self.height = 880
 
-    def open(self, url):
-        self.browser.get(url)
-
-    def find_element(self, args) -> WebElement:
-        return self.browser.find_element(*args)
-
-    def find_elements(self, args) -> WebElement:
-        return self.browser.find_elements(*args)
+    def open(self, url=config.base_ui_url):
+        self.page.set_viewport_size({"width": self.width, "height": self.height})
+        self.page.goto(url)
