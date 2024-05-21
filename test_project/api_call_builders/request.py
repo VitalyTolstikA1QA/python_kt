@@ -1,11 +1,11 @@
-from configuration.config import settings
 from framework.interface_drivers.http.api_util import get, post
 from test_project.models.access import AccessModel
 from test_project.models.header import HeaderModel
+from framework.utils.config_utils import config
 
 
 def get_access_information():
-    return post(f'{settings.token_url}', AccessModel(settings.client_id, settings.client_secret), HeaderModel.Headers())
+    return post(f'{config.token_url}', AccessModel(config.client_id, config.client_secret), HeaderModel.Headers())
 
 
 def get_tokens():
@@ -19,8 +19,8 @@ def get_tokens():
 
 
 def get_artist(artist_id):
-    return get(f'{settings.base_api_url}/artists/{artist_id}', get_tokens())
+    return get(f'{config.base_api_url}/artists/{artist_id}', get_tokens())
 
 
 def get_artist_albums(artist_id):
-    return get(f'{settings.base_api_url}/artists/{artist_id}/top-tracks', get_tokens())
+    return get(f'{config.base_api_url}/artists/{artist_id}/top-tracks', get_tokens())
