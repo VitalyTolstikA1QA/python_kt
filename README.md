@@ -9,5 +9,8 @@ API
 
 UI
 
-1. Add `brwoser` to `settings.json` file (supported `chrome` and `firefox`)
-2. Run all tests `pytest -v -s -m "ui"`
+1. Run `pytest -v -s -m "ui"`
+2. Options: 
+`--browser-channel chrome` for run on local google chrome browser
+`--headed` to see ui part of browser
+`--browser firefox` for run in firefox

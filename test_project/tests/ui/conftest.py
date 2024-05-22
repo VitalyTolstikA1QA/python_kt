@@ -1,12 +1,10 @@
 import pytest
-from framework.utils.browser_factory import init_browser
-from framework.utils.settins_utils import settings
+
+from framework.data_processors.patterns.page_singleton import PageSingleton
+from playwright.sync_api import Page
 
 
-@pytest.fixture()
-def browser():
-    browser = init_browser()
-    browser.maximize_window()
-    browser.implicitly_wait(settings.implicitly_wait)
-    yield browser
-    browser.quit()
+@pytest.fixture
+def init_page(page: Page):
+    yield PageSingleton.get_instance(page)
+    PageSingleton.clear_instance()
