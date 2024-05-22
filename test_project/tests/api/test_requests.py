@@ -1,9 +1,11 @@
+import allure
 import pytest
 from test_project.api_call_builders.request import get_artist, get_artist_albums
 from test_project.models.artist import Artist
 from framework.data_processors.json.json_util import get_value
 
 
+@allure.title('Genre is present in response')
 @pytest.mark.api
 @pytest.mark.parametrize(
     'artist_id, genre',
@@ -19,6 +21,7 @@ def test_genre_is_present(artist_id, genre):
     assert genre.lower() in genres, f'{genre} was not found in {genres}'
 
 
+@allure.title('Song is present in response')
 @pytest.mark.api
 @pytest.mark.parametrize(
     'artist_id, song_name',
