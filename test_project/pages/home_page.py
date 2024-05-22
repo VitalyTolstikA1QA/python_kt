@@ -4,10 +4,14 @@ from test_project.pages.base_page import BasePage
 
 
 class HomePage(BasePage):
-    def __init__(self, page: Page):
-        super().__init__(page)
-        self.cookies_button = page.get_by_role("button", name="Accept Cookies")
-        self.search_button = page.get_by_test_id("root").get_by_label("Search")
+
+    @property
+    def cookies_button(self):
+        return self.page.get_by_role("button", name="Accept Cookies")
+
+    @property
+    def search_button(self):
+        return self.page.get_by_test_id("root").get_by_label("Search")
 
     def click_accept_cookies(self):
         self.cookies_button.click()

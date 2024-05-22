@@ -1,12 +1,13 @@
-from playwright.sync_api import Page, Locator, expect
+from playwright.sync_api import Locator, expect
 
 from test_project.pages.base_page import BasePage
 
 
 class SearchPage(BasePage):
-    def __init__(self, page: Page):
-        super().__init__(page)
-        self.search_input = page.get_by_test_id("search-input")
+
+    @property
+    def search_input(self) -> Locator:
+        return self.page.get_by_test_id("search-input")
 
     def __track_textbox(self, track) -> Locator:
         return self.page.locator('css=[data-testid="tracklist-row"] a > [data-encore-id="text"]', has_text=track)

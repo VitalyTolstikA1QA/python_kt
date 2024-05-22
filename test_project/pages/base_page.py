@@ -1,10 +1,10 @@
-from playwright.sync_api import Page
+from framework.data_processors.patterns.page_singleton import PageSingleton
 from framework.utils.config_utils import config
 
 
 class BasePage:
-    def __init__(self, page: Page):
-        self.page = page
+    def __init__(self):
+        self.page = PageSingleton.get_instance()
         self.width = 1820
         self.height = 880
 
